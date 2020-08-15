@@ -1,0 +1,60 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: var(--color-primary);
+}
+
+main, section {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  padding: 20px;
+}
+
+form {
+  flex: 1;
+  max-width: 400px;
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  color: var(--color-font-default);
+  font-size: large;
+  box-shadow: var(--shadow-form-default);
+}
+
+form h1 {
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+form input {
+  width: 100%;
+}
+
+form fieldset {
+  flex: 1;
+  border: none;
+  margin: 0 0 20px 0;
+}
+
+form label {
+  margin: 0 0 10px 0;
+}
+
+form div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+form button {
+  color: #fff;
+  background-color: var(--color-primary);
+}
