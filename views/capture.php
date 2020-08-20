@@ -1,3 +1,9 @@
+<?php
+
+// TODO: Remember to fetch the stored images of the user and display them in the sidebar.
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,6 +64,11 @@
               <button id="upload">Upload</button>
               <button id="clear">Clear</button>
               <button id="save">Save</button>
+              <input
+                id="file"
+                type="file"
+                accept=".png"
+                hidden>
             </div>
           </aside>
         </div>

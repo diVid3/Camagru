@@ -7,6 +7,11 @@ class HttpResponseService implements IHttpResponseService {
     die();
   }
 
+  public static function sendUnauthorized() {
+    http_response_code(401);
+    die();
+  }
+
   public static function redirect($fullUrl) {
     header('Location: '.$fullUrl);
     die();

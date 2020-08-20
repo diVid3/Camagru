@@ -33,7 +33,7 @@
       <h1>Picture</h1>
 
       <div class="picture">
-        <img src="/images/test/image1.jpg">
+        <img src="/pictures/test/image1.jpg">
         <div class="stats">
           <div class="likes">
             <p>541 Likes</p>
@@ -41,22 +41,6 @@
           <img src="/assets/icons/heart.svg">
         </div>
       </div>
-
-      <!-- <form id="commentForm" method="POST" action="/comments/create">
-        <fieldset>
-          <label for="comment">Leave a comment</label>
-          <textarea
-            id="comment"
-            type="textarea"
-            name="comment"
-            placeholder="Comment here"
-            required></textarea>
-        </fieldset>
-        <p id="errorBox"></p>
-        <div>
-          <button type="submit">Comment</button>
-        </div>
-      </form> -->
 
       <div class="comments">
         <form id="commentForm" method="POST" action="/comments/create">

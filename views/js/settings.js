@@ -26,9 +26,7 @@ settingsForm.addEventListener('submit', (e) => {
     method: 'POST',
     body: formData
   })
-  .then((res) => {
-    return res.json();
-  })
+  .then((res) => res.json())
   .then((json) => {
 
     if (json.success !== true) {

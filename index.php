@@ -18,6 +18,7 @@ require_once('./interfaces/IEmailService.php');
 require_once('./interfaces/IAuthService.php');
 require_once('./interfaces/IHttpResponseService.php');
 require_once('./interfaces/IRegisterService.php');
+require_once('./interfaces/IPictureService.php');
 
 // Repositories
 require_once('./repositories/AccountRepository.php');
@@ -29,6 +30,7 @@ require_once('./services/AuthService.php');
 require_once('./services/EmailService.php');
 require_once('./services/HttpResponseService.php');
 require_once('./services/RegisterService.php');
+require_once('./services/PictureService.php');
 
 // Router
 require_once('./Router.php');

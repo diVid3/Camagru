@@ -65,6 +65,22 @@ class AuthService implements IAuthService {
 
     return $response;
   }
+
+  public static function respondLoggedIn() {
+
+    if (self::isLoggedIn()) {
+      HttpResponseService::sendUnauthorized();
+      return;
+    }
+  }
+
+  public static function respondNotLoggedIn() {
+
+    if (!self::isLoggedIn()) {
+      HttpResponseService::sendUnauthorized();
+      return;
+    }
+  }
 }
 
 ?>

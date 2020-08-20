@@ -31,52 +31,52 @@
 
       <div class="masonry-container">
         <div>
-          <img src="/images/test/image1.jpg">
-          <img src="/images/test/image2.jpg">
-          <img src="/images/test/image3.jpg">
-          <img src="/images/test/image4.jpg">
-          <img src="/images/test/image5.jpeg">
-          <img src="/images/test/image6.jpg">
-          <img src="/images/test/image7.jpg">
-          <img src="/images/test/image8.jpg">
-          <img src="/images/test/image9.jpg">
-          <img src="/images/test/image10.jpeg">
+          <img src="/pictures/test/image1.jpg">
+          <img src="/pictures/test/image2.jpg">
+          <img src="/pictures/test/image3.jpg">
+          <img src="/pictures/test/image4.jpg">
+          <img src="/pictures/test/image5.jpeg">
+          <img src="/pictures/test/image6.jpg">
+          <img src="/pictures/test/image7.jpg">
+          <img src="/pictures/test/image8.jpg">
+          <img src="/pictures/test/image9.jpg">
+          <img src="/pictures/test/image10.jpeg">
         </div>
         <div>
-          <img src="/images/test/image9.jpg">
-          <img src="/images/test/image1.jpg">
-          <img src="/images/test/image6.jpg">
-          <img src="/images/test/image4.jpg">
-          <img src="/images/test/image7.jpg">
-          <img src="/images/test/image2.jpg">
-          <img src="/images/test/image3.jpg">
-          <img src="/images/test/image5.jpeg">
-          <img src="/images/test/image10.jpeg">
-          <img src="/images/test/image8.jpg">
+          <img src="/pictures/test/image9.jpg">
+          <img src="/pictures/test/image1.jpg">
+          <img src="/pictures/test/image6.jpg">
+          <img src="/pictures/test/image4.jpg">
+          <img src="/pictures/test/image7.jpg">
+          <img src="/pictures/test/image2.jpg">
+          <img src="/pictures/test/image3.jpg">
+          <img src="/pictures/test/image5.jpeg">
+          <img src="/pictures/test/image10.jpeg">
+          <img src="/pictures/test/image8.jpg">
         </div>
         <div>
-          <img src="/images/test/image1.jpg">
-          <img src="/images/test/image3.jpg">
-          <img src="/images/test/image4.jpg">
-          <img src="/images/test/image2.jpg">
-          <img src="/images/test/image10.jpeg">
-          <img src="/images/test/image8.jpg">
-          <img src="/images/test/image9.jpg">
-          <img src="/images/test/image5.jpeg">
-          <img src="/images/test/image7.jpg">
-          <img src="/images/test/image6.jpg">
+          <img src="/pictures/test/image1.jpg">
+          <img src="/pictures/test/image3.jpg">
+          <img src="/pictures/test/image4.jpg">
+          <img src="/pictures/test/image2.jpg">
+          <img src="/pictures/test/image10.jpeg">
+          <img src="/pictures/test/image8.jpg">
+          <img src="/pictures/test/image9.jpg">
+          <img src="/pictures/test/image5.jpeg">
+          <img src="/pictures/test/image7.jpg">
+          <img src="/pictures/test/image6.jpg">
         </div>
         <div>
-          <img src="/images/test/image3.jpg">
-          <img src="/images/test/image2.jpg">
-          <img src="/images/test/image7.jpg">
-          <img src="/images/test/image10.jpeg">
-          <img src="/images/test/image1.jpg">
-          <img src="/images/test/image9.jpg">
-          <img src="/images/test/image6.jpg">
-          <img src="/images/test/image8.jpg">
-          <img src="/images/test/image5.jpeg">
-          <img src="/images/test/image4.jpg">
+          <img src="/pictures/test/image3.jpg">
+          <img src="/pictures/test/image2.jpg">
+          <img src="/pictures/test/image7.jpg">
+          <img src="/pictures/test/image10.jpeg">
+          <img src="/pictures/test/image1.jpg">
+          <img src="/pictures/test/image9.jpg">
+          <img src="/pictures/test/image6.jpg">
+          <img src="/pictures/test/image8.jpg">
+          <img src="/pictures/test/image5.jpeg">
+          <img src="/pictures/test/image4.jpg">
         </div>
       </div>
 

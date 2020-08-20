@@ -21,8 +21,17 @@ const uploadButton = document.getElementById('upload');
 const clearButton = document.getElementById('clear');
 const saveButton = document.getElementById('save');
 
-captureButton.addEventListener('click', onCapture);
-clearButton.addEventListener('click', onClear);
+captureButton.addEventListener('click', onCapturePress);
+uploadButton.addEventListener('click', onUploadPress);
+clearButton.addEventListener('click', onClearPress);
+saveButton.addEventListener('click', onSavePress);
+
+// File
+const fileInput = document.getElementById('file');
+fileInput.addEventListener('change', onFileSelect);
+
+// State
+let didCapture = false;
 
 // Enable webcam
 navigator.mediaDevices.getUserMedia({video: { width: 640, height: 480 }, audio: false})
@@ -68,21 +77,7 @@ function onCheckboxClick(checkbox, sticker) {
   }
 }
 
-// Take picture on click event.
-// takePicButton.addEventListener('click', function(e) {
-//   var context = canvas.getContext('2d');
-//   if (width && height) {
-//       canvas.width = width;
-//       canvas.height = height;
-//       context.drawImage(video, 0, 0, width, height);
-//       takePicButtonClicks++;
-//       document.getElementById('videoDiv').style.display = "none";
-//       document.getElementById('canvasDiv').style.display = "flex";
-//   }
-//   e.preventDefault();
-// });
-
-function onCapture() {
+function onCapturePress() {
 
   const width = 640;
   const height = 480;
@@ -95,13 +90,17 @@ function onCapture() {
   
   video.style.display = 'none';
   canvas.style.display = 'block';
+
+  didCapture = true;
 }
 
-function onUpload() {
-
+function onUploadPress() {
+  fileInput.click();
 }
 
-function onClear() {
+function onClearPress() {
+
+  didCapture = false;
 
   removeSticker(flowersCheckbox, flowers);
   removeSticker(unicornCheckbox, unicorn);
@@ -109,8 +108,79 @@ function onClear() {
 
   video.style.display = 'initial';
   canvas.style.display = 'none';
+  fileInput.value = '';
 }
 
-function onSave() {
-  
+function onSavePress() {
+
+  if (!didCapture) {
+    return;
+  }
+
+  const picture = canvas.toDataURL('image/png');
+  const form = new FormData();
+
+  form.append('picture', picture);
+  appendStickers(form);
+
+  sendForm(form);
+  onClearPress();
+}
+
+function onFileSelect() {
+
+  const file = fileInput.files[0];
+
+  if (file) {
+    console.log('file selected is: ', file);
+  }
+
+  const form = new FormData();
+
+  form.append('file', file);
+  appendStickers(form);
+
+  sendForm(form);
+  onClearPress();
+}
+
+function appendStickers(form) {
+
+  if (!form) {
+    return;
+  }
+
+  if (flowersCheckbox.hasAttribute('checked') && flowersCheckbox.checked === true) {
+    form.append('flowers', true);
+  }
+
+  if (unicornCheckbox.hasAttribute('checked') && unicornCheckbox.checked === true) {
+    form.append('unicorn', true);
+  }
+
+  if (sunCheckbox.hasAttribute('checked') && sunCheckbox.checked === true) {
+    form.append('sun', true);
+  }
+}
+
+function sendForm(formData) {
+
+  fetch('/capture/create', {
+    method: 'POST',
+    body: formData
+  })
+  .then((res) => res.json())
+  .then((json) => {
+
+    // TODO: Remember to call addPictureToSidebar(path);
+
+    console.log('json returned is: ', json);
+  });
+}
+
+function addPictureToSidebar(path) {
+
+  // TODO:  Call this when a successful merge + save is done on the BE.
+  //        BE should return picture path + id of the picture. The id
+  //        will be used for when the picture needs to be deleted.
 }

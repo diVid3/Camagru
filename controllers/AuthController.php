@@ -8,11 +8,15 @@ class AuthController extends Controller {
     
     if ($route === 'login' && $action === 'show') {
 
+      AuthService::respondLoggedIn();
+
       parent::__construct('login');
       return;
     }
 
     if ($route === 'login' && $action === 'create') {
+
+      AuthService::respondLoggedIn();
 
       $email = $_POST['email'];
       $password = $_POST['password'];
@@ -30,11 +34,16 @@ class AuthController extends Controller {
     }
 
     if ($route === 'register' && $action === 'show') {
+
+      AuthService::respondLoggedIn();
+
       parent::__construct('register');
       return;
     }
 
     if ($route === 'register' && $action === 'create') {
+
+      AuthService::respondLoggedIn();
 
       // TODO: Handle registration process here.
       // TODO: Send verification email.
@@ -52,6 +61,8 @@ class AuthController extends Controller {
 
     if ($route === 'settings' && $action === 'show') {
 
+      AuthService::respondNotLoggedIn();
+
       // TODO: Replace with the real repository values.
 
       $_SESSION['viewBag'] = [
@@ -66,6 +77,8 @@ class AuthController extends Controller {
 
     if ($route === 'settings' && $action === 'edit') {
 
+      AuthService::respondNotLoggedIn();
+
       $username = $_POST['username'];
       $email = $_POST['email'];
       $password = $_POST['password'];
@@ -74,6 +87,13 @@ class AuthController extends Controller {
       HttpResponseService::sendJson($response, 200);
       return;
     }
+
+    if ($route === 'database' && $action === 'create') {
+
+      // TODO: Create database using config scripts / includes here.
+    }
+
+    HttpResponseService::sendNotFound();
   }
 }
 
