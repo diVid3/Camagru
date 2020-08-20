@@ -1,6 +1,11 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
 body {
-  background-color: #eee;
+  background-color: var(--color-primary);
   padding-top: var(--navbar-height);
+  padding-bottom: 40px;
 }
 
 main {
@@ -16,4 +21,50 @@ nav > ul {
 
 nav > ul li {
   padding: 10px;
+}
+
+section h1 {
+  margin: 20px 0;
+  text-align: center;
+  color: white;
+  font-family: 'Leckerli One', cursive;
+  font-size: xx-large;
+}
+
+.masonry-container {
+  flex: 1;
+  position: relative;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: var(--shadow-form-default);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 15px 20px 15px;
+}
+
+.masonry-container div {
+  flex: 25%;
+  max-width: 25%;
+  padding: 0 5px;
+}
+
+.masonry-container div img {
+  margin-top: 10px;
+  vertical-align: middle;
+  width: 100%;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .masonry-container div {
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .masonry-container div {
+    flex: 100%;
+    max-width: 100%;
+  }
 }

@@ -10,6 +10,7 @@ require_once('./controllers/FeatureController.php');
 require_once('./controllers/resources/AccountController.php');
 require_once('./controllers/resources/PictureController.php');
 require_once('./controllers/resources/CommentController.php');
+require_once('./controllers/resources/LikerController.php');
 
 // Interfaces
 require_once('./interfaces/IRepository.php');

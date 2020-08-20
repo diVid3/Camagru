@@ -27,17 +27,18 @@ class Router {
 
     $routes = [
       '' => function() { new FeatureController($this->route, $this->action, $this->id); },
-      'gallery' => function() { new FeatureController($this->route, $this->action, $this->id); },
-      'picture' => function() { new FeatureController($this->route, $this->action, $this->id); },
-      'capture' => function() { new FeatureController($this->route, $this->action, $this->id); },
-      'register' => function() { new AuthController($this->route, $this->action, $this->id); },
-      'login' => function() { new AuthController($this->route, $this->action, $this->id); },
-      'verify' => function() { new AuthController($this->route, $this->action, $this->id); },
-      'reset' => function() { new AuthController($this->route, $this->action, $this->id); },
-      'settings' => function() { new AuthController($this->route, $this->action, $this->id); },
-      'accounts' => function() { new AccountController($this->route, $this->action, $this->id); },
-      'pictures' => function() { new PictureController($this->route, $this->action, $this->id); },
-      'comments' => function() { new CommentController($this->route, $this->action, $this->id); }
+      'gallery' => function() { new FeatureController($this->route, $this->action, $this->id); },   // show (GET)
+      'picture' => function() { new FeatureController($this->route, $this->action, $this->id); },   // show + id (GET)
+      'capture' => function() { new FeatureController($this->route, $this->action, $this->id); },   // show (GET), create (POST)
+      'register' => function() { new AuthController($this->route, $this->action, $this->id); },     // show (GET), create (POST)
+      'login' => function() { new AuthController($this->route, $this->action, $this->id); },        // show (GET), create (POST)
+      'verify' => function() { new AuthController($this->route, $this->action, $this->id); },       // edit + id (POST)
+      'reset' => function() { new AuthController($this->route, $this->action, $this->id); },        // edit + id (POST)
+      'settings' => function() { new AuthController($this->route, $this->action, $this->id); },     // show (GET), edit (POST)
+      'accounts' => function() { new AccountController($this->route, $this->action, $this->id); },  // CRUD
+      'pictures' => function() { new PictureController($this->route, $this->action, $this->id); },  // CRUD
+      'comments' => function() { new CommentController($this->route, $this->action, $this->id); },  // CRUD
+      'likers' => function() { new CommentController($this->route, $this->action, $this->id); }     // CRUD
     ];
 
     $chosenRoute = array_key_exists($this->route, $routes)

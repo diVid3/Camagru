@@ -1,0 +1,136 @@
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  background-color: var(--color-primary);
+  padding-top: var(--navbar-height);
+  padding-bottom: 40px;
+}
+
+main {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* nav > ul {
+  display: flex;
+  padding: 10px;
+}
+
+nav > ul li {
+  padding: 10px;
+} */
+
+section > h1 {
+  margin: 20px 0;
+  text-align: center;
+  color: white;
+  font-family: 'Leckerli One', cursive;
+  font-size: xx-large;
+}
+
+section > div {
+  display: flex;
+  flex: 1;
+  position: relative;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: var(--shadow-form-default);
+  padding: 20px;
+  margin: 0 0 30px 0;
+  color: var(--color-font-default);
+}
+
+form {
+  flex-direction: column;
+}
+
+.picture > img {
+  width: 100%;
+}
+
+.picture .stats {
+  margin: 0;
+  display: flex;
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.picture .stats .likes, .picture .stats img {
+  display: flex;
+  padding: 6px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: var(--shadow-form-default);
+}
+
+.picture .stats img {
+  height: 50px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.picture .stats .likes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px 0 0;
+}
+
+form textarea {
+  width: 100%;
+  resize: none;
+}
+
+form fieldset {
+  flex: 1;
+  border: none;
+  margin: 0 0 10px 0;
+}
+
+form label {
+  margin: 0 0 10px 0;
+}
+
+form div {
+  display: flex;
+  justify-content: flex-end;
+}
+
+form button {
+  color: #fff;
+  background-color: var(--color-primary);
+}
+
+.comments {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+.comment {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.comment div:first-child {
+  display: flex;
+  align-items: center;
+  margin: 0 20px 0 0;
+}
+
+.comment div:first-child img {
+  height: 50px;
+  width: 50px;
+}
+
+.comment div:last-child h3 {
+  margin: 0 0 5px 0;
+}
+
+.comment:last-child {
+  margin-bottom: 0px;
+}
