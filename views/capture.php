@@ -67,7 +67,7 @@
               <input
                 id="file"
                 type="file"
-                accept=".png"
+                accept=".jpg,.jpeg,.png"
                 hidden>
             </div>
           </aside>

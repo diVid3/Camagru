@@ -2,10 +2,36 @@
 
 class PictureService implements IPictureService {
 
-  private static function mergeSticker($dest, $stickerPath, $coordinates) {
+  private static function mergeSticker($picturePath, $stickerPath, $position) {
 
-    $storedPicture = imagecreatefrompng($dest);
+    $storedPicture = imagecreatefrompng($picturePath);
     $storedSticker = imagecreatefrompng($stickerPath);
+
+    $storedPictureWidth = imagesx($storedPicture);
+    $storedPictureHeight = imagesy($storedPicture);
+    $storedStickerWidth = imagesx($storedSticker);
+    $storedStickerHeight = imagesy($storedSticker);
+
+    $dstXOffset = 20;
+    $dstYOffset = 20;
+
+    if ($position === 'top-right') {
+
+      $dstXOffset = $storedPictureWidth - $storedStickerWidth - 20;
+      $dstYOffset = 20;
+    }
+
+    if ($position === 'bottom-left') {
+
+      $dstXOffset = 20;
+      $dstYOffset = $storedPictureHeight - $storedStickerHeight - 20;
+    }
+
+    if ($position === 'bottom-right') {
+
+      $dstXOffset = $storedPictureWidth - $storedStickerWidth - 20;
+      $dstYOffset = $storedPictureHeight - $storedStickerHeight - 20;
+    }
 
     imagecolortransparent($storedSticker, imagecolorat($storedSticker, 0, 0));
 
@@ -13,55 +39,37 @@ class PictureService implements IPictureService {
     imagecopymerge(
       $storedPicture,
       $storedSticker,
-      $coordinates['dst_x'],
-      $coordinates['dst_y'],
-      $coordinates['src_x'],
-      $coordinates['src_y'],
+      $dstXOffset,
+      $dstYOffset,
+      0,
+      0,
       imagesx($storedSticker),
       imagesy($storedSticker),
       100
     );
 
-    unlink($dest);
+    unlink($picturePath);
 
     $guid = uniqid();
-    $dest = 'pictures'.'/'.$guid.'.png';
+    $picturePath = 'pictures'.'/'.$guid.'.png';
 
-    imagepng($storedPicture, $dest);
+    imagepng($storedPicture, $picturePath);
 
-    return $dest;
+    return $picturePath;
   }
 
   private static function mergeStickers($dest, $data) {
 
     if ($data['sun'] === 'true') {
-
-      $dest = self::mergeSticker($dest, 'assets/stickers/sun128.png', [
-        'dst_x' => 492,
-        'dst_y' => 20,
-        'src_x' => 0,
-        'src_y' => 0
-      ]);
+      $dest = self::mergeSticker($dest, 'assets/stickers/sun128.png', 'top-right');
     }
 
     if ($data['flowers'] === 'true') {
-
-      $dest = self::mergeSticker($dest, 'assets/stickers/flowers128.png', [
-        'dst_x' => 20,
-        'dst_y' => 332,
-        'src_x' => 0,
-        'src_y' => 0
-      ]);
+      $dest = self::mergeSticker($dest, 'assets/stickers/flowers128.png', 'bottom-left');
     }
 
     if ($data['unicorn'] === 'true') {
-
-      $dest = self::mergeSticker($dest, 'assets/stickers/unicorn128.png', [
-        'dst_x' => 492,
-        'dst_y' => 332,
-        'src_x' => 0,
-        'src_y' => 0
-      ]);
+      $dest = self::mergeSticker($dest, 'assets/stickers/unicorn128.png', 'bottom-right');
     }
 
     return $dest;
@@ -83,6 +91,16 @@ class PictureService implements IPictureService {
 
       if (!$didMove) {
         throw new Exception('Couldn\'t move file');
+      }
+
+      // Convert file to png if jpg or jpeg.
+      if ($extension === 'jpg' || $extension === 'jpeg') {
+
+        $guid = uniqid();
+        $newDest = 'pictures'.'/'.$guid.'.png';
+        imagepng(imagecreatefromstring(file_get_contents($dest)), $newDest);
+        unlink($dest);
+        $dest = $newDest;
       }
 
       $finalDest = self::mergeStickers($dest, $data);
