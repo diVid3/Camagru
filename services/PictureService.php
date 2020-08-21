@@ -110,9 +110,11 @@ class PictureService implements IPictureService {
 
     } catch (Exception $e) {
 
+      error_log($e);
+
       $response = [
         'success' => false,
-        'message' => $e
+        'message' => 'Couldn\'t save uploaded file'
       ];
     }
 
@@ -144,9 +146,11 @@ class PictureService implements IPictureService {
 
     } catch(Exception $e) {
 
+      error_log($e);
+
       $response = [
         'success' => false,
-        'message' => $e
+        'message' => 'Couldn\'t save captured image'
       ];
     }
 

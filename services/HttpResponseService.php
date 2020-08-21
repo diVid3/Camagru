@@ -12,6 +12,11 @@ class HttpResponseService implements IHttpResponseService {
     die();
   }
 
+  public static function sendServerError() {
+    http_response_code(500);
+    die();
+  }
+
   public static function redirect($fullUrl) {
     header('Location: '.$fullUrl);
     die();

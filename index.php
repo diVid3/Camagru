@@ -3,6 +3,9 @@
 // Config
 // TODO: Remember to require database configs.
 
+// Classes
+require_once('./classes/Database.php');
+
 // Controllers
 require_once('./controllers/Controller.php');
 require_once('./controllers/AuthController.php');
@@ -19,6 +22,7 @@ require_once('./interfaces/IAuthService.php');
 require_once('./interfaces/IHttpResponseService.php');
 require_once('./interfaces/IRegisterService.php');
 require_once('./interfaces/IPictureService.php');
+require_once('./interfaces/IDatabase.php');
 
 // Repositories
 require_once('./repositories/AccountRepository.php');
