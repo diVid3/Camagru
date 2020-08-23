@@ -3,7 +3,10 @@
 }
 
 body {
-  background-color: var(--color-primary);
+  /* background-color: var(--color-primary); */
+  background-image: url('/assets/background.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   padding: var(--navbar-height) 0 var(--footer-height) 0;
 }
 
@@ -14,13 +17,41 @@ main {
 
 main > aside {
   flex: 1;
-  display: flex;
   max-width: 260px;
   position: relative;
   background-color: #fff;
   box-shadow: var(--shadow-form-default);
   padding: 20px;
   color: var(--color-font-default);
+  overflow-y: scroll;
+}
+
+main > aside > div {
+  position: relative;
+  border-radius: 5px;
+  box-shadow: var(--shadow-form-default);
+  background-color: #fff;
+  margin: 0 0 20px 0;
+  overflow: hidden;
+}
+
+main > aside > div > button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: var(--color-font-default);
+  cursor: pointer;
+  min-height: initial;
+  min-width: initial;
+}
+
+main > aside > div:last-child {
+  margin: 0;
+}
+
+main > aside > div > img {
+  margin: 0 0 -4px 0;
+  width: 205px;
 }
 
 main > section {

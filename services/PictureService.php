@@ -104,11 +104,23 @@ class PictureService implements IPictureService {
       }
 
       $finalDest = self::mergeStickers($dest, $data);
+      $finalPath = '/'.$finalDest;
+      $accountId = $_SESSION['id'];
 
-      // TODO: Persist to db here. Use repo.
-      // TODO: Remember to add path + id to response.
+      $lastInsertId = PictureRepository::createPicture($accountId, $finalPath);
 
-    } catch (Exception $e) {
+      $response = [
+        'success' => true,
+        'message' => 'image created',
+        'data' => [
+          'picture' => [
+            'id' => $lastInsertId,
+            'path' => $finalPath
+          ]
+        ]
+      ];
+
+    } catch (PDOException | Exception $e) {
 
       error_log($e);
 
@@ -140,11 +152,23 @@ class PictureService implements IPictureService {
       file_put_contents($dest, base64_decode($picture));
 
       $finalDest = self::mergeStickers($dest, $data);
+      $finalPath = '/'.$finalDest;
+      $accountId = $_SESSION['id'];
 
-      // TODO: Persist to db here. Use repo.
-      // TODO: Remember to add path + id to response.
+      $lastInsertId = PictureRepository::createPicture($accountId, $finalPath);
 
-    } catch(Exception $e) {
+      $response = [
+        'success' => true,
+        'message' => 'image created',
+        'data' => [
+          'picture' => [
+            'id' => $lastInsertId,
+            'path' => $finalPath
+          ]
+        ]
+      ];
+
+    } catch(PDOException | Exception $e) {
 
       error_log($e);
 

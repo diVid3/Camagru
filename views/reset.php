@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/views/css/shared.css"/>
-  <link rel="stylesheet" href="/views/css/register.css"/>
+  <link rel="stylesheet" href="/views/css/reset.css"/>
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <script src="/views/js/shared.js" defer></script>
-  <script src="/views/js/register.js" defer></script>
-  <title>Register</title>
+  <script src="/views/js/reset.js" defer></script>
+  <title>Reset</title>
 </head>
 <body>
   <main>
@@ -18,19 +18,8 @@
     ?>
 
     <section>
-      <form id="registerForm" method="POST" action="/register/create">
-        <h1>Register</h1>
-        <fieldset>
-          <label for="username">Username</label>
-          <input
-            id="username"
-            type="text"
-            name="username"
-            placeholder="Enter your username"
-            title="Only normal characters allowed, minimum length of 5"
-            pattern="^\w{5,}$"
-            required>
-        </fieldset>
+      <form id="resetForm" method="POST" action="/reset/create">
+        <h1>Reset</h1>
         <fieldset>
           <label for="email">Email</label>
           <input
@@ -47,23 +36,11 @@
             type="password"
             name="password"
             placeholder="Enter your password"
-            title="Use at least uppercase, lowercase, numbers, and special characters, minimum length of 5"
-            pattern="^[a-zA-Z0-9!@#$%^&*]{5,}$"
-            required>
-        </fieldset>
-        <fieldset>
-          <label for="confirmPassword">Confirm password</label>
-          <input
-            id="confirmPassword"
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm your password"
             required>
         </fieldset>
         <p id="errorBox"></p>
-        <p id="notificationBox"></p>
         <div>
-          <button type="submit">Register</button>
+          <button type="submit">Reset</button>
         </div>
       </form>
     </section>

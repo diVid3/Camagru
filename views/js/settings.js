@@ -6,7 +6,6 @@ settingsForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const username = document.getElementById('username').value;
-  const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirmPassword').value;
   const canNotify = document.getElementById('canNotify').checked;
@@ -18,11 +17,10 @@ settingsForm.addEventListener('submit', (e) => {
   const formData = new FormData();
 
   formData.append('username', username);
-  formData.append('email', email);
   formData.append('password', password);
   formData.append('canNotify', canNotify);
 
-  fetch('/register/create', {
+  fetch('/settings/edit', {
     method: 'POST',
     body: formData
   })

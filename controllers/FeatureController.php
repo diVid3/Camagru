@@ -6,6 +6,20 @@ class FeatureController extends Controller {
 
     if ($route === 'gallery' && $action === 'show') {
 
+      try {
+
+        $rows = PictureRepository::getPictures();
+
+      } catch (PDOException $e) {
+
+        error_log($e);
+        HttpResponseService::sendServerError();
+      }
+
+      $_SESSION['viewBag'] = [
+        'rows' => $rows
+      ];
+
       parent::__construct('gallery');
       return;
     }
@@ -20,7 +34,45 @@ class FeatureController extends Controller {
       return;
     }
 
+    if ($route === 'picture' && $action === 'delete' && $id !== '') {
+
+      AuthService::respondNotLoggedIn();
+
+      try {
+
+        $rows = PictureRepository::deletePictureById($id);
+
+      } catch (PDOException $e) {
+
+        error_log($e);
+        HttpResponseService::sendServerError();
+      }
+
+      $response = [
+        'success' => true,
+        'message' => 'Picture deleted'
+      ];
+
+      HttpResponseService::sendJson($response, 200);
+      return;
+    }
+
     if ($route === 'capture' && $action === 'show') {
+
+      try {
+
+        $email = $_SESSION['email'];
+        $rows = PictureRepository::getPicturesByEmail($email);
+
+      } catch (PDOException $e) {
+
+        error_log($e);
+        HttpResponseService::sendServerError();
+      }
+
+      $_SESSION['viewBag'] = [
+        'rows' => $rows
+      ];
 
       AuthService::respondNotLoggedIn();
 

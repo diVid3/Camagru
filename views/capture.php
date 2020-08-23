@@ -1,6 +1,12 @@
 <?php
 
-// TODO: Remember to fetch the stored images of the user and display them in the sidebar.
+$viewBag = array_key_exists('viewBag', $_SESSION)
+  ? $_SESSION['viewBag']
+  : [];
+
+$rows = array_key_exists('rows', $viewBag)
+  ? $viewBag['rows']
+  : null;
 
 ?>
 
@@ -29,55 +35,64 @@
 
   <main>
 
-      <section>
+    <section>
 
-        <h1>Capture</h1>
+      <h1>Capture</h1>
 
-        <div class="container">
-          <div class="video-container">
-            <video id="video">
-              <p>Stream not active</p>
-            </video>
-            <canvas id="canvas"></canvas>
-            <img id="flowers" src="/assets/stickers/flowers.png">
-            <img id="unicorn" src="/assets/stickers/unicorn.png">
-            <img id="sun" src="/assets/stickers/sun.png">
-          </div>
-          <aside>
-            <div class="stickers">
-              <h3>Stickers</h3>
-              <div class="sticker">
-                <label for="sun-checkbox">Sun</label>
-                <input id="sun-checkbox" type="checkbox">
-              </div>
-              <div class="sticker">
-                <label for="flowers-checkbox">Flowers</label>
-                <input id="flowers-checkbox" type="checkbox">
-              </div>
-              <div class="sticker">
-                <label for="unicorn-checkbox">Unicorn</label>
-                <input id="unicorn-checkbox" type="checkbox">
-              </div>
-            </div>
-            <div class="buttons">
-              <button id="capture">Capture</button>
-              <button id="upload">Upload</button>
-              <button id="clear">Clear</button>
-              <button id="save">Save</button>
-              <input
-                id="file"
-                type="file"
-                accept=".jpg,.jpeg,.png"
-                hidden>
-            </div>
-          </aside>
+      <div class="container">
+        <div class="video-container">
+          <video id="video">
+            <p>Stream not active</p>
+          </video>
+          <canvas id="canvas"></canvas>
+          <img id="flowers" src="/assets/stickers/flowers.png">
+          <img id="unicorn" src="/assets/stickers/unicorn.png">
+          <img id="sun" src="/assets/stickers/sun.png">
         </div>
-        
-      </section>
+        <aside>
+          <div class="stickers">
+            <h3>Stickers</h3>
+            <div class="sticker">
+              <label for="sun-checkbox">Sun</label>
+              <input id="sun-checkbox" type="checkbox">
+            </div>
+            <div class="sticker">
+              <label for="flowers-checkbox">Flowers</label>
+              <input id="flowers-checkbox" type="checkbox">
+            </div>
+            <div class="sticker">
+              <label for="unicorn-checkbox">Unicorn</label>
+              <input id="unicorn-checkbox" type="checkbox">
+            </div>
+          </div>
+          <div class="buttons">
+            <button id="capture">Capture</button>
+            <button id="upload">Upload</button>
+            <button id="clear">Clear</button>
+            <button id="save">Save</button>
+            <input
+              id="file"
+              type="file"
+              accept=".jpg,.jpeg,.png"
+              hidden>
+          </div>
+        </aside>
+      </div>
 
-      <aside>
+    </section>
 
-      </aside>
+    <aside id="picture-bar">
+
+      <?php
+
+        foreach ($rows as $row) {
+          echo "<div><button class='delete-button'>Delete</button><img id='{$row['id']}' src='{$row['path']}'></div>";
+        }
+
+      ?>
+
+    </aside>
+
   </main>
 
   <?php

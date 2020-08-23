@@ -1,7 +1,24 @@
 <?php
 
-// TODO:  When accessing the viewBag for the images, you could take their
-//        position in the array and modulate by 4 to populate the grid.
+$viewBag = array_key_exists('viewBag', $_SESSION)
+  ? $_SESSION['viewBag']
+  : [];
+
+$rows = array_key_exists('rows', $viewBag)
+  ? $viewBag['rows']
+  : null;
+
+$columns = [
+  [],
+  [],
+  []
+];
+
+foreach ($rows as $index=>$row) {
+
+  $index %= 3;
+  array_push($columns[$index], $row);
+}
 
 ?>
 
@@ -31,53 +48,33 @@
 
       <div class="masonry-container">
         <div>
-          <img src="/pictures/test/image1.jpg">
-          <img src="/pictures/test/image2.jpg">
-          <img src="/pictures/test/image3.jpg">
-          <img src="/pictures/test/image4.jpg">
-          <img src="/pictures/test/image5.jpeg">
-          <img src="/pictures/test/image6.jpg">
-          <img src="/pictures/test/image7.jpg">
-          <img src="/pictures/test/image8.jpg">
-          <img src="/pictures/test/image9.jpg">
-          <img src="/pictures/test/image10.jpeg">
+          <?php
+
+            foreach ($columns[0] as $row) {
+              echo "<img id='{$row['id']}' src='{$row['path']}'>";
+            }
+
+          ?>
         </div>
         <div>
-          <img src="/pictures/test/image9.jpg">
-          <img src="/pictures/test/image1.jpg">
-          <img src="/pictures/test/image6.jpg">
-          <img src="/pictures/test/image4.jpg">
-          <img src="/pictures/test/image7.jpg">
-          <img src="/pictures/test/image2.jpg">
-          <img src="/pictures/test/image3.jpg">
-          <img src="/pictures/test/image5.jpeg">
-          <img src="/pictures/test/image10.jpeg">
-          <img src="/pictures/test/image8.jpg">
+          <?php
+
+            foreach ($columns[1] as $row) {
+              echo "<img id='{$row['id']}' src='{$row['path']}'>";
+            }
+
+          ?>
         </div>
         <div>
-          <img src="/pictures/test/image1.jpg">
-          <img src="/pictures/test/image3.jpg">
-          <img src="/pictures/test/image4.jpg">
-          <img src="/pictures/test/image2.jpg">
-          <img src="/pictures/test/image10.jpeg">
-          <img src="/pictures/test/image8.jpg">
-          <img src="/pictures/test/image9.jpg">
-          <img src="/pictures/test/image5.jpeg">
-          <img src="/pictures/test/image7.jpg">
-          <img src="/pictures/test/image6.jpg">
+          <?php
+
+            foreach ($columns[2] as $row) {
+              echo "<img id='{$row['id']}' src='{$row['path']}'>";
+            }
+
+          ?>
         </div>
         <div>
-          <img src="/pictures/test/image3.jpg">
-          <img src="/pictures/test/image2.jpg">
-          <img src="/pictures/test/image7.jpg">
-          <img src="/pictures/test/image10.jpeg">
-          <img src="/pictures/test/image1.jpg">
-          <img src="/pictures/test/image9.jpg">
-          <img src="/pictures/test/image6.jpg">
-          <img src="/pictures/test/image8.jpg">
-          <img src="/pictures/test/image5.jpeg">
-          <img src="/pictures/test/image4.jpg">
-        </div>
       </div>
 
     </section>

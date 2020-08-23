@@ -1,7 +1,5 @@
 <?php
 
-// TODO:  Could create non-clustered index on verify_hash
-
 class Router {
 
   private $url;
@@ -12,7 +10,7 @@ class Router {
   private $id = '';
 
   function __construct($url) {
-    
+
     $this->url = $url;
 
     $this->parse();
@@ -21,7 +19,7 @@ class Router {
 
   private function navigate() {
 
-    if (!$this->isValidAction($this->explodedUrl[1])) {
+    if (!$this->isValidAction($this->action)) {
       return HttpResponseService::sendNotFound();
     }
 
@@ -32,7 +30,7 @@ class Router {
       'capture' => function() { new FeatureController($this->route, $this->action, $this->id); },   // show (GET), create (POST)  // respondNotLoggedIn();
       'register' => function() { new AuthController($this->route, $this->action, $this->id); },     // show (GET), create (POST)  // respondLoggedIn();
       'login' => function() { new AuthController($this->route, $this->action, $this->id); },        // show (GET), create (POST)  // respondLoggedIn();
-      'verify' => function() { new AuthController($this->route, $this->action, $this->id); },       // edit + id (POST)           // respondLoggedIn();
+      'verify' => function() { new AuthController($this->route, $this->action, $this->id); },       // edit + id (POST)           // respondLoggedIn();     // respondLoggedIn();
       'reset' => function() { new AuthController($this->route, $this->action, $this->id); },        // edit + id (POST)           // respondLoggedIn();
       'database' => function() { new AuthController($this->route, $this->action, $this->id); },     // create (POST)              // respondNotLoggedIn();
       'settings' => function() { new AuthController($this->route, $this->action, $this->id); },     // show (GET), edit (POST)    // respondNotLoggedIn();
@@ -83,11 +81,17 @@ class Router {
 
     $this->action = array_key_exists(1, $this->explodedUrl)
       ? $this->explodedUrl[1]
-      : 'show';
+      : '';
 
     $this->id = array_key_exists(2, $this->explodedUrl)
       ? $this->explodedUrl[2]
       : '';
+
+    if ($this->explodedUrlSize === 1 && $this->explodedUrl[0] === '') {
+
+      $this->route = 'gallery';
+      $this->action = 'show';
+    }
   }
 }
 

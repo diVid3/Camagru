@@ -60,7 +60,7 @@
         </form>
         <div class="comment">
           <div>
-            <img src="/assets/icons/user-blue.png">
+            <img src="/assets/icons/user-somewhat-blue.png">
           </div>
           <div>
             <h3>xXSniper1337</h3>
@@ -69,7 +69,7 @@
         </div>
         <div class="comment">
           <div>
-            <img src="/assets/icons/user-blue.png">
+            <img src="/assets/icons/user-somewhat-blue.png">
           </div>
           <div>
             <h3>xXSniper1337</h3>
@@ -78,7 +78,7 @@
         </div>
         <div class="comment">
           <div>
-            <img src="/assets/icons/user-blue.png">
+            <img src="/assets/icons/user-somewhat-blue.png">
           </div>
           <div>
             <h3>xXSniper1337</h3>

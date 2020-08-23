@@ -1,9 +1,5 @@
 <?php
 
-// TODO: Might need to preload the settings of the user here.
-
-session_start();
-
 $viewBag = array_key_exists('viewBag', $_SESSION)
   ? $_SESSION['viewBag']
   : [];
@@ -53,17 +49,7 @@ $canNotify = array_key_exists('canNotify', $viewBag)
             value="<?php echo $username ?>"
             placeholder="Enter your username"
             title="Only normal characters allowed, minimum length of 5"
-            pattern="\w{5,}"
-            required>
-        </fieldset>
-        <fieldset>
-          <label for="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            value="<?php echo $email ?>"
-            placeholder="Enter your email"
+            pattern="^\w{5,}$"
             required>
         </fieldset>
         <fieldset>
@@ -74,7 +60,7 @@ $canNotify = array_key_exists('canNotify', $viewBag)
             name="password"
             placeholder="Enter your password"
             title="Use at least uppercase, lowercase, numbers, and special characters, minimum length of 5"
-            pattern="[a-zA-Z0-9!@#$%^&*]{5,}"
+            pattern="^[a-zA-Z0-9!@#$%^&*]{5,}$"
             required>
         </fieldset>
         <fieldset>

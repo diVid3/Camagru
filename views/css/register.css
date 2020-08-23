@@ -3,7 +3,10 @@
 }
 
 body {
-  background-color: var(--color-primary);
+  /* background-color: var(--color-primary); */
+  background-image: url('/assets/background.jpeg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 main, section {

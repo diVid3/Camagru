@@ -30,10 +30,13 @@ saveButton.addEventListener('click', onSavePress);
 const fileInput = document.getElementById('file');
 fileInput.addEventListener('change', onFileSelect);
 
+// Picture bar
+const pictureBar = document.getElementById('picture-bar');
+
 // State
 let didCapture = false;
 
-// Enable webcam
+// Actions
 navigator.mediaDevices.getUserMedia({video: { width: 640, height: 480 }, audio: false})
 .then(function(stream) {
   video.srcObject = stream;
@@ -43,6 +46,9 @@ navigator.mediaDevices.getUserMedia({video: { width: 640, height: 480 }, audio: 
   console.error(e);
 });
 
+addOnDeleteToDeleteButtons();
+
+// Functions
 function showSticker(checkbox, sticker) {
 
   checkbox.setAttribute('checked', 'true');
@@ -130,11 +136,6 @@ function onSavePress() {
 function onFileSelect() {
 
   const file = fileInput.files[0];
-
-  if (file) {
-    console.log('file selected is: ', file);
-  }
-
   const form = new FormData();
 
   form.append('file', file);
@@ -172,15 +173,56 @@ function sendForm(formData) {
   .then((res) => res.json())
   .then((json) => {
 
-    // TODO: Remember to call addPictureToSidebar(path);
+    if (!json.success) {
+      return;
+    }
 
-    console.log('json returned is: ', json);
+    const picture = document.createElement('img');
+    const card = document.createElement('div');
+    const deleteButton = document.createElement('button');
+
+    picture.setAttribute('id', json?.data?.picture?.id);
+    picture.setAttribute('src', json?.data?.picture?.path);
+
+    deleteButton.setAttribute('class', 'delete-button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', onDelete);
+
+    card.appendChild(deleteButton);
+    card.appendChild(picture);
+
+    pictureBar.insertBefore(card, pictureBar.firstChild);
   });
 }
 
-function addPictureToSidebar(path) {
+function onDelete(e) {
 
-  // TODO:  Call this when a successful merge + save is done on the BE.
-  //        BE should return picture path + id of the picture. The id
-  //        will be used for when the picture needs to be deleted.
+  const pictureToDelete = e.target.nextSibling;
+  const idToDelete = pictureToDelete.getAttribute('id');
+
+  const formData = new FormData();
+
+  if (!idToDelete) {
+    return;
+  }
+
+  fetch(`/picture/delete/${idToDelete}`, {
+    method: 'POST',
+    body: formData
+  })
+  .then((res) => res.json())
+  .then((json) => {
+
+    if (!json.success) {
+      return;
+    }
+
+    pictureToDelete?.parentNode?.remove();
+  });
+}
+
+function addOnDeleteToDeleteButtons() {
+
+  document.querySelectorAll('.delete-button')
+    .forEach((element) => element.addEventListener('click', onDelete));
 }
