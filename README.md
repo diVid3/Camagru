@@ -4,12 +4,12 @@ A basic web application similar to instagram, used for uploading and sharing pic
 
 # Requirements:
 
-PHP
-MAMP
-JavaScript
-CSS
-HTML
-MySQL
+  1)  PHP
+  2)  MAMP
+  3)  JavaScript
+  4)  CSS
+  5)  HTML
+  6)  MySQL
 
 # Application setup steps:
 
@@ -41,8 +41,8 @@ of the C# Service-Repository pattern as well.
 
 The main application flow can be summarized as this:
 
-UI  --> Controllers --> Service     --> Repository  --> Database
-UI  --> Controllers --> Repository  --> Database
+  UI  --> Controllers --> Service     --> Repository  --> Database
+  UI  --> Controllers --> Repository  --> Database
 
 Responsibilities:
 
