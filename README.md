@@ -41,8 +41,8 @@ of the C# Service-Repository pattern as well.
 
 The main application flow can be summarized as this:
 
-  UI  --> Controllers --> Service     --> Repository  --> Database
-  UI  --> Controllers --> Repository  --> Database
+  1)  UI  --> Controllers --> Service     --> Repository  --> Database
+  2)  UI  --> Controllers --> Repository  --> Database
 
 Responsibilities:
 
