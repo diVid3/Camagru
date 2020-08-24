@@ -104,6 +104,25 @@ class FeatureController extends Controller {
       return;
     }
 
+    // POST
+    if ($route === 'comment' && $action === 'create') {
+
+      try {
+
+        $email = $_SESSION['email'];
+        $rows = PictureRepository::getPicturesByEmail($email);
+
+      } catch (PDOException $e) {
+
+        error_log($e);
+        HttpResponseService::sendServerError();
+      }
+
+      $_SESSION['viewBag'] = [
+        'rows' => $rows
+      ];
+    }
+
     HttpResponseService::sendNotFound();
   }
 }

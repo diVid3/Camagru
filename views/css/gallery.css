@@ -3,7 +3,6 @@
 }
 
 body {
-  /* background-color: var(--color-primary); */
   padding-top: var(--navbar-height);
   padding-bottom: 40px;
   background-image: url('/assets/background.jpeg');
