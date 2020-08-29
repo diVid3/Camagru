@@ -51,7 +51,7 @@ foreach ($rows as $index=>$row) {
           <?php
 
             foreach ($columns[0] as $row) {
-              echo "<img id='{$row['id']}' src='{$row['path']}'>";
+              echo "<img id='{$row['id']}' src='{$row['path']}' class='picture'>";
             }
 
           ?>
@@ -60,7 +60,7 @@ foreach ($rows as $index=>$row) {
           <?php
 
             foreach ($columns[1] as $row) {
-              echo "<img id='{$row['id']}' src='{$row['path']}'>";
+              echo "<img id='{$row['id']}' src='{$row['path']}' class='picture'>";
             }
 
           ?>
@@ -69,7 +69,7 @@ foreach ($rows as $index=>$row) {
           <?php
 
             foreach ($columns[2] as $row) {
-              echo "<img id='{$row['id']}' src='{$row['path']}'>";
+              echo "<img id='{$row['id']}' src='{$row['path']}' class='picture'>";
             }
 
           ?>

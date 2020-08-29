@@ -25,19 +25,17 @@ class Router {
 
     $routes = [
       '' => function() { new FeatureController($this->route, $this->action, $this->id); },
-      'gallery' => function() { new FeatureController($this->route, $this->action, $this->id); },   // show (GET)
-      'picture' => function() { new FeatureController($this->route, $this->action, $this->id); },   // show + id (GET)            // respondNotLoggedIn();
-      'capture' => function() { new FeatureController($this->route, $this->action, $this->id); },   // show (GET), create (POST)  // respondNotLoggedIn();
-      'register' => function() { new AuthController($this->route, $this->action, $this->id); },     // show (GET), create (POST)  // respondLoggedIn();
-      'login' => function() { new AuthController($this->route, $this->action, $this->id); },        // show (GET), create (POST)  // respondLoggedIn();
-      'verify' => function() { new AuthController($this->route, $this->action, $this->id); },       // edit + id (POST)           // respondLoggedIn();     // respondLoggedIn();
-      'reset' => function() { new AuthController($this->route, $this->action, $this->id); },        // edit + id (POST)           // respondLoggedIn();
-      'database' => function() { new AuthController($this->route, $this->action, $this->id); },     // create (POST)              // respondNotLoggedIn();
-      'settings' => function() { new AuthController($this->route, $this->action, $this->id); },     // show (GET), edit (POST)    // respondNotLoggedIn();
-      'accounts' => function() { new AccountController($this->route, $this->action, $this->id); },  // CRUD                       // respondNotLoggedIn();
-      'pictures' => function() { new PictureController($this->route, $this->action, $this->id); },  // CRUD                       // respondNotLoggedIn();
-      'comments' => function() { new CommentController($this->route, $this->action, $this->id); },  // CRUD                       // respondNotLoggedIn();
-      'likers' => function() { new CommentController($this->route, $this->action, $this->id); }     // CRUD                       // respondNotLoggedIn();
+      'gallery' => function() { new FeatureController($this->route, $this->action, $this->id); },
+      'picture' => function() { new FeatureController($this->route, $this->action, $this->id); },
+      'comment' => function() { new FeatureController($this->route, $this->action, $this->id); },
+      'like' => function() { new FeatureController($this->route, $this->action, $this->id); },
+      'capture' => function() { new FeatureController($this->route, $this->action, $this->id); },
+      'register' => function() { new AuthController($this->route, $this->action, $this->id); },
+      'login' => function() { new AuthController($this->route, $this->action, $this->id); },
+      'verify' => function() { new AuthController($this->route, $this->action, $this->id); },
+      'reset' => function() { new AuthController($this->route, $this->action, $this->id); },
+      'database' => function() { new AuthController($this->route, $this->action, $this->id); },
+      'settings' => function() { new AuthController($this->route, $this->action, $this->id); }
     ];
 
     $chosenRoute = array_key_exists($this->route, $routes)

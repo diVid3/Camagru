@@ -1,10 +1,14 @@
 <?php
 
-// TODO:  Remember to load the comments and likes for the picture.
-//        You could also determine if you liked the picture or not.
+$viewBag = $_SESSION['viewBag'];
 
-// TODO:  Remember to swap out the heart svgs based upon whether the
-//        logged in user liked the picture or not.
+$pictureRow = $viewBag['pictureRow'];
+$commentRows = $viewBag['commentRows'];
+$likerCountRow = $viewBag['likerCountRow'];
+$didLikeArr = $viewBag['didLikeArr'];
+
+$likerCount = $likerCountRow['likerCount'];
+$didLike = $didLikeArr['didLike'];
 
 ?>
 
@@ -33,12 +37,28 @@
       <h1>Picture</h1>
 
       <div class="picture">
-        <img src="/pictures/test/image1.jpg">
+
+        <?php
+          echo "<img id='{$pictureRow['id']}' src='{$pictureRow['path']}' class='image'>";
+        ?>
+
         <div class="stats">
           <div class="likes">
-            <p>541 Likes</p>
+            <span id="likeCount"><?php echo "{$likerCount}" ?></span><span>&nbsp;likes</span>
           </div>
-          <img src="/assets/icons/heart.svg">
+
+          <?php
+
+            if ($didLike) {
+              echo "<img id='likeImage' src='/assets/icons/heart.svg'>";
+            }
+
+            if (!$didLike) {
+              echo "<img id='likeImage' src='/assets/icons/heart-black.svg'>";
+            }
+
+          ?>
+
         </div>
       </div>
 
@@ -55,38 +75,19 @@
           </fieldset>
           <p id="errorBox"></p>
           <div>
-            <button type="submit">Comment</button>
+            <button id="commentButton" type="submit">Comment</button>
           </div>
         </form>
-        <div class="comment">
-          <div>
-            <img src="/assets/icons/user-somewhat-blue.png">
-          </div>
-          <div>
-            <h3>xXSniper1337</h3>
-            <p>This is an awesome picture bro, keep making these! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia esse ducimus libero eligendi facere eaque inventore reiciendis porro aliquam suscipit? Explicabo eos optio ea fuga nulla consequatur porro quo accusantium. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda odit dolorem fuga temporibus, ea, itaque doloribus dignissimos vero recusandae ex dolores perspiciatis, blanditiis reprehenderit aspernatur eligendi. Praesentium velit quos dicta.</p>
-          </div>
-        </div>
-        <div class="comment">
-          <div>
-            <img src="/assets/icons/user-somewhat-blue.png">
-          </div>
-          <div>
-            <h3>xXSniper1337</h3>
-            <p>This is an awesome picture bro, keep making these! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia esse ducimus libero eligendi facere eaque inventore reiciendis porro aliquam suscipit? Explicabo eos optio ea fuga nulla consequatur porro quo accusantium.</p>
-          </div>
-        </div>
-        <div class="comment">
-          <div>
-            <img src="/assets/icons/user-somewhat-blue.png">
-          </div>
-          <div>
-            <h3>xXSniper1337</h3>
-            <p>This is an awesome picture bro, keep making these! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia esse ducimus libero eligendi facere eaque inventore reiciendis porro aliquam suscipit? Explicabo eos optio ea fuga nulla consequatur porro quo accusantium.</p>
-          </div>
-        </div>
-      </div>
 
+        <?php
+
+          foreach ($commentRows as $row) {
+            echo "<div class='comment'><div><img src='/assets/icons/user-somewhat-blue.png'></div><div><h3>{$row['username']}</h3><p>{$row['text']}</p></div></div>";
+          }
+
+        ?>
+
+      </div>
     </section>
   </main>
 

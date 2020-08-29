@@ -28,7 +28,27 @@ class FeatureController extends Controller {
 
       AuthService::respondNotLoggedIn();
 
-      // TODO: Fetch the picture by id and it's comments and likes.
+      $accountId = $_SESSION['id'];
+
+      try {
+
+        $commentRows = CommentRepository::getCommentsByPictureId($id);
+        $pictureRow = PictureRepository::getPictureById($id);
+        $likerCountRow = LikerRepository::getLikerCountByPictureId($id);
+        $didLikeArr = LikerRepository::getDidLikeByPictureId($accountId, $id);
+
+      } catch (PDOException $e) {
+
+        error_log($e);
+        HttpResponseService::sendServerError();
+      }
+
+      $_SESSION['viewBag'] = [
+        'pictureRow' => $pictureRow,
+        'commentRows' => $commentRows,
+        'likerCountRow' => $likerCountRow,
+        'didLikeArr' => $didLikeArr
+      ];
 
       parent::__construct('picture');
       return;
@@ -107,10 +127,15 @@ class FeatureController extends Controller {
     // POST
     if ($route === 'comment' && $action === 'create') {
 
+      AuthService::respondNotLoggedIn();
+
+      $accountId = $_SESSION['id'];
+      $pictureId = $_POST['pictureId'];
+      $text = $_POST['text'];
+
       try {
 
-        $email = $_SESSION['email'];
-        $rows = PictureRepository::getPicturesByEmail($email);
+        CommentRepository::createComment($accountId, $pictureId, $text);
 
       } catch (PDOException $e) {
 
@@ -118,9 +143,40 @@ class FeatureController extends Controller {
         HttpResponseService::sendServerError();
       }
 
-      $_SESSION['viewBag'] = [
-        'rows' => $rows
+      $username = $_SESSION['username'];
+
+      $response = [
+        'success' => true,
+        'message' => 'Comment created',
+        'data' => [
+          'username' => $username
+        ]
       ];
+
+      HttpResponseService::sendJson($response, 201);
+      return;
+    }
+
+    // GET
+    if ($route === 'like' && $action === 'edit' && $id !== '') {
+
+      AuthService::respondNotLoggedIn();
+
+      $accountId = $_SESSION['id'];
+      $pictureId = $id;
+
+      try {
+
+        $response = LikerRepository::editLiker($accountId, $pictureId);
+
+      } catch (PDOException $e) {
+
+        error_log($e);
+        HttpResponseService::sendServerError();
+      }
+
+      HttpResponseService::sendJson($response, 201);
+      return;
     }
 
     HttpResponseService::sendNotFound();

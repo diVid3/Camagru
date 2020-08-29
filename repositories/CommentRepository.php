@@ -4,8 +4,6 @@ class CommentRepository implements ICommentRepository {
 
   public static function createComment($accountId, $pictureId, $text) {
 
-    // Will get the accountId from the session, pictureId and the text from the FE.
-
     $connection = Database::getConnection();
 
     $query = 'INSERT INTO Comment(accountId, pictureId, text) VALUES (?, ?, ?)';
@@ -16,7 +14,16 @@ class CommentRepository implements ICommentRepository {
 
   public static function getCommentsByPictureId($id) {
 
+    $connection = Database::getConnection();
 
+    $query = 'SELECT Account.username, Comment.text FROM Comment INNER JOIN Account ON Comment.accountId = Account.id WHERE Comment.pictureId = ? ORDER BY Comment.id DESC';
+
+    $statement = $connection->prepare($query);
+    $statement->execute([$id]);
+
+    $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    return $rows;
   }
 }
 

@@ -44,7 +44,14 @@ class PictureRepository implements IPictureRepository {
 
     $connection = Database::getConnection();
 
-    // TODO: This.
+    $query = 'SELECT * FROM Picture WHERE id = ?';
+
+    $statement = $connection->prepare($query);
+    $statement->execute([$id]);
+
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $row;
   }
 
   public static function deletePictureById($id) {

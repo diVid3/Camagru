@@ -78,11 +78,13 @@ section > .container {
   display: flex;
   overflow: hidden;
   box-shadow: var(--shadow-form-default);
+  padding: 20px;
 }
 
 .container > div:first-child {
   position: relative;
-  margin: 0 0 -4px 0;
+  width: 640px;
+  height: 480px;
 }
 
 .container > div:first-child > video {
@@ -122,7 +124,7 @@ section > .container {
   width: 160px;
   position: relative;
   background-color: #fff;
-  box-shadow: var(--shadow-form-default);
+  /* box-shadow: var(--shadow-form-default); */
   padding: 20px;
   color: var(--color-font-default);
 }
