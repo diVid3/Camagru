@@ -26,7 +26,9 @@ class FeatureController extends Controller {
 
     if ($route === 'picture' && $action === 'show' && $id !== '') {
 
-      AuthService::respondNotLoggedIn();
+      if (!AuthService::isLoggedIn()) {
+        HttpResponseService::redirect('http://localhost:8080/login/show');
+      }
 
       $accountId = $_SESSION['id'];
 
